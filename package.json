@@ -1,0 +1,26 @@
+{
+  "name": "chrisstudio-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium business website for ChrisStudio, built with Next.js, Tailwind CSS, and Framer Motion.",
+  "author": "ChrisStudio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisstudio/chrisstudio-website.git"
+  },
+  "keywords": [
+    "nextjs",
+    "website",
+    "portfolio",
+    "landing-page",
+    "tailwind",
+    "framer-motion",
+    "business-site"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
