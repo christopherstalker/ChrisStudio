@@ -1,0 +1,16 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="96" height="96" rx="28" fill="#FCFAF6"/>
+  <rect x="1" y="1" width="94" height="94" rx="27" stroke="#121417" stroke-opacity="0.1"/>
+  <text
+    x="48"
+    y="58"
+    fill="#121417"
+    font-size="34"
+    font-weight="700"
+    letter-spacing="-3"
+    text-anchor="middle"
+    font-family="'Segoe UI', Arial, sans-serif"
+  >
+    CS
+  </text>
+</svg>
