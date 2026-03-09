@@ -1,5 +1,5 @@
 {
-  "name": "morrow-studio-site",
+  "name": "chrisstudio-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -33,5 +33,6 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2"
-  }
+  },
+  "description": "ChrisStudio marketing site and portfolio built with Next.js."
 }

@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const inquiryId = `MRW-${new Date().getFullYear()}-${crypto
+    const inquiryId = `CS-${new Date().getFullYear()}-${crypto
       .randomUUID()
       .slice(0, 8)
       .toUpperCase()}`;
