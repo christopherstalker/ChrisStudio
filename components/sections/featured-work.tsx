@@ -1,4 +1,4 @@
-import { caseStudies } from "@/data/case-studies";
+import { caseStudies } from "@/content/data/case-studies";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
