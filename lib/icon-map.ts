@@ -15,6 +15,7 @@ import {
   Settings2,
   ShieldCheck,
  main
+ main
   main
   Sparkles,
   Workflow,
