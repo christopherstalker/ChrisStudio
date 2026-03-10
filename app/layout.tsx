@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Instrument_Serif, Manrope } from "next/font/google";
 
-import "@/app/globals.css";
+import "./globals.css";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
