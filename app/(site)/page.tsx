@@ -1,6 +1,3 @@
-<div className="fixed right-4 top-4 z-[9999] rounded-xl bg-red-500 px-4 py-2 text-white shadow-2xl">
-  TAILWIND TEST
-</div>
 import type { Metadata } from "next";
 
 import { FeaturedWork } from "@/components/sections/featured-work";
