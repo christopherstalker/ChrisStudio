@@ -4,7 +4,6 @@ import {
   Bot,
   Gauge,
   LayoutDashboard,
-  fix-build-errors-in-vercel-deployment
   Layers3,
   MessageSquare,
   Rocket,
@@ -15,7 +14,7 @@ import {
   Rocket,
   Settings2,
   ShieldCheck,
- main
+  main
   Sparkles,
   Workflow,
 } from "lucide-react";
@@ -24,7 +23,6 @@ const iconMap = {
   sparkles: Sparkles,
   rocket: Rocket,
   dashboard: LayoutDashboard,
-  fix-build-errors-in-vercel-deployment
   stack: Layers3,
   workflow: Workflow,
   gauge: Gauge,
