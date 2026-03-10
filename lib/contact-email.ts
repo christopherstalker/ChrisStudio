@@ -1,39 +1,77 @@
-import nodemailer from "nodemailer";
-
 import type { ContactFormValues } from "@/lib/contact-schema";
 
-export async function sendContactEmail(inquiryId: string, data: ContactFormValues) {
-  const host = process.env.SMTP_HOST;
-  const port = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : undefined;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const to = process.env.CONTACT_EMAIL_TO ?? process.env.SMTP_USER;
+const CONTACT_RECIPIENT = "christopherstalker1@outlook.com";
 
-  if (!host || !port || !user || !pass || !to) {
-    console.info("Email env vars are not fully configured; skipping outbound email send.", { inquiryId });
-    return;
+type SendContactEmailArgs = {
+  inquiryId: string;
+  data: ContactFormValues;
+  submittedAt: Date;
+};
+
+export async function sendContactEmail({
+  inquiryId,
+  data,
+  submittedAt,
+}: SendContactEmailArgs) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CONTACT_FROM_EMAIL;
+  const to = process.env.CONTACT_TO_EMAIL ?? CONTACT_RECIPIENT;
+
+  if (!resendApiKey || !from) {
+    throw new Error("Missing RESEND_API_KEY or CONTACT_FROM_EMAIL environment variables.");
   }
 
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass },
+  const text = [
+    `Inquiry ID: ${inquiryId}`,
+    `Name: ${data.name}`,
+    `Email: ${data.email}`,
+    `Company: ${data.company || "N/A"}`,
+    `Project Budget: ${data.budget}`,
+    `Submission timestamp: ${submittedAt.toISOString()}`,
+    "",
+    "Project Description:",
+    data.description,
+  ].join("\n");
+
+  const html = `
+    <h2>New project inquiry</h2>
+    <p><strong>Inquiry ID:</strong> ${inquiryId}</p>
+    <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+    <p><strong>Company:</strong> ${escapeHtml(data.company || "N/A")}</p>
+    <p><strong>Project Budget:</strong> ${escapeHtml(data.budget)}</p>
+    <p><strong>Submission timestamp:</strong> ${submittedAt.toISOString()}</p>
+    <p><strong>Project Description:</strong></p>
+    <p>${escapeHtml(data.description).replace(/\n/g, "<br />")}</p>
+  `;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      reply_to: data.email,
+      subject: `New project inquiry from ${data.name}`,
+      text,
+      html,
+    }),
   });
 
-  await transporter.sendMail({
-    from: process.env.CONTACT_EMAIL_FROM ?? user,
-    to,
-    replyTo: data.email,
-    subject: `New inquiry ${inquiryId} from ${data.name}`,
-    text: [
-      `Inquiry ID: ${inquiryId}`,
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
-      `Company: ${data.company || "N/A"}`,
-      `Budget: ${data.budget || "N/A"}`,
-      "",
-      data.description,
-    ].join("\n"),
-  });
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Resend request failed (${response.status}): ${errorBody}`);
+  }
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
