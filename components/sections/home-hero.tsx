@@ -7,13 +7,13 @@ import { Badge } from "@/components/ui/badge";
 export function HomeHero() {
   return (
     <Section className="pb-12 pt-10 sm:pt-14 lg:pt-16">
-      <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+      <div className="grid items-start gap-10 gap-x-16 lg:grid-cols-2">
         <div>
           <Reveal>
             <Badge variant="accent">{siteConfig.availability}</Badge>
           </Reveal>
           <Reveal delay={0.05} className="mt-6">
-            <h1 className="text-balance text-5xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-[5.5rem] lg:leading-[0.94]">
+            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-[5.5rem] lg:leading-[0.94]">
               Software that looks refined, feels fast, and is built to{" "}
               <span className="font-serif text-warm">scale cleanly</span>.
             </h1>
