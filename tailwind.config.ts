@@ -4,9 +4,12 @@ const config: Config = {
     content: [
   "./app/**/*.{js,ts,jsx,tsx,mdx}",
   "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./data/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  "./sections/**/*.{js,ts,jsx,tsx,mdx}",
+  "./styles/**/*.{css,scss}",
+  "./data/**/*.{js,ts,jsx,tsx,mdx}",
+  "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+  "./hooks/**/*.{js,ts,jsx,tsx,mdx}",
+]
   theme: {
     extend: {
       colors: {
