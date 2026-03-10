@@ -9,12 +9,19 @@ export const budgetOptions = [
 
 export const contactSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name."),
-  email: z.string().email("Please enter a valid email address."),
-  company: z.string().trim().optional(),
-  budget: z.enum(budgetOptions),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Please enter your email address.")
+    .email("Please enter a valid email address."),
+  company: z.string().trim().min(1, "Please enter your company name."),
+  budget: z.enum(budgetOptions, {
+    required_error: "Please select a project budget.",
+  }),
   description: z
     .string()
     .trim()
+    .min(1, "Please describe your project.")
     .min(20, "Please include at least a few details about your project."),
 });
 

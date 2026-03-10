@@ -30,9 +30,13 @@ export function ContactForm() {
     handleSubmit,
     reset,
     setError,
+    clearErrors,
+    trigger,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
+    mode: "onSubmit",
+    reValidateMode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -41,6 +45,16 @@ export function ContactForm() {
       description: "",
     },
   });
+
+  const registerField = (field: keyof ContactFormValues) =>
+    register(field, {
+      onChange: async () => {
+        if (errors[field]) {
+          clearErrors(field);
+          await trigger(field);
+        }
+      },
+    });
 
   const onSubmit = handleSubmit(async (values) => {
     setServerError(null);
@@ -141,7 +155,7 @@ export function ContactForm() {
           autoComplete="name"
           placeholder="Your name"
           error={errors.name?.message}
-          {...register("name")}
+          {...registerField("name")}
         />
         <InputField
           label="Email"
@@ -149,20 +163,21 @@ export function ContactForm() {
           autoComplete="email"
           placeholder="you@company.com"
           error={errors.email?.message}
-          {...register("email")}
+          {...registerField("email")}
         />
         <InputField
           label="Company"
+          required
           autoComplete="organization"
           placeholder="Company name"
           error={errors.company?.message}
-          {...register("company")}
+          {...registerField("company")}
         />
         <SelectField
           label="Project Budget"
           required
           error={errors.budget?.message}
-          {...register("budget")}
+          {...registerField("budget")}
         >
           <option value="">Select a range</option>
           {budgetOptions.map((option) => (
@@ -180,7 +195,7 @@ export function ContactForm() {
           placeholder="What are you building, what is not working today, and what would a successful outcome look like?"
           hint="A few concrete details make it much easier to respond usefully."
           error={errors.description?.message}
-          {...register("description")}
+          {...registerField("description")}
         />
       </div>
 
