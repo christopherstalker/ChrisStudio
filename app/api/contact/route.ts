@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           ok: false,
+          message: "Please review the highlighted fields and try again.",
           errors: parsed.error.flatten().fieldErrors,
         },
         { status: 400 },
@@ -24,8 +25,13 @@ export async function POST(request: Request) {
       .randomUUID()
       .slice(0, 8)
       .toUpperCase()}`;
+    const submittedAt = new Date();
 
-    await sendContactEmail(inquiryId, parsed.data);
+    await sendContactEmail({
+      inquiryId,
+      data: parsed.data,
+      submittedAt,
+    });
 
     return NextResponse.json({
       ok: true,
@@ -39,7 +45,8 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        message: "Something went wrong while submitting the form.",
+        message:
+          "We couldn't send your inquiry right now. Please try again in a moment.",
       },
       { status: 500 },
     );

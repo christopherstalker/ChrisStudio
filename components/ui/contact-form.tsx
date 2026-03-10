@@ -18,7 +18,10 @@ type SuccessState = {
   message: string;
 };
 
+type SubmissionStatus = "idle" | "sending" | "success" | "error";
+
 export function ContactForm() {
+  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const [successState, setSuccessState] = useState<SuccessState | null>(null);
 
@@ -34,47 +37,59 @@ export function ContactForm() {
       name: "",
       email: "",
       company: "",
-      budget: "",
+      budget: undefined,
       description: "",
     },
   });
 
   const onSubmit = handleSubmit(async (values) => {
     setServerError(null);
+    setSubmissionStatus("sending");
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
-    const data = await response.json();
+      const data = (await response.json()) as {
+        message?: string;
+        inquiryId?: string;
+        errors?: Record<string, string[] | undefined>;
+      };
 
-    if (!response.ok) {
-      if (data.errors) {
-        for (const [field, messages] of Object.entries(
-          data.errors as Record<string, string[] | undefined>,
-        )) {
-          if (messages?.[0]) {
-            setError(field as keyof ContactFormValues, {
-              type: "server",
-              message: messages[0],
-            });
+      if (!response.ok) {
+        if (data.errors) {
+          for (const [field, messages] of Object.entries(data.errors)) {
+            if (messages?.[0]) {
+              setError(field as keyof ContactFormValues, {
+                type: "server",
+                message: messages[0],
+              });
+            }
           }
         }
+
+        setServerError(data.message ?? "Something went wrong while sending the form.");
+        setSubmissionStatus("error");
+        return;
       }
 
-      setServerError(data.message ?? "Something went wrong while sending the form.");
-      return;
+      setSuccessState({
+        inquiryId: data.inquiryId ?? "N/A",
+        message:
+          data.message ??
+          "Thanks for the brief. I will review it and reply with next steps within one business day.",
+      });
+      setSubmissionStatus("success");
+      reset();
+    } catch {
+      setServerError("Network error. Please try again in a moment.");
+      setSubmissionStatus("error");
     }
-
-    setSuccessState({
-      inquiryId: data.inquiryId,
-      message: data.message,
-    });
-    reset();
   });
 
   if (successState) {
@@ -104,7 +119,10 @@ export function ContactForm() {
             <Button
               type="button"
               variant="secondary"
-              onClick={() => setSuccessState(null)}
+              onClick={() => {
+                setSuccessState(null);
+                setSubmissionStatus("idle");
+              }}
             >
               Submit Another Inquiry
             </Button>
@@ -142,17 +160,16 @@ export function ContactForm() {
         />
         <SelectField
           label="Project Budget"
+          required
           error={errors.budget?.message}
           {...register("budget")}
         >
           <option value="">Select a range</option>
-          {budgetOptions
-            .filter((option) => option !== "")
-            .map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
+          {budgetOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </SelectField>
       </div>
 
@@ -169,15 +186,17 @@ export function ContactForm() {
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          {serverError ? <p className="text-sm text-red-600">{serverError}</p> : null}
-          {!serverError ? (
+          {submissionStatus === "error" && serverError ? (
+            <p className="text-sm text-red-600">{serverError}</p>
+          ) : null}
+          {submissionStatus !== "error" ? (
             <p className="text-sm text-muted">
               Serious inquiries only. Typical response time is within one business day.
             </p>
           ) : null}
         </div>
         <Button type="submit" size="lg" trailingIcon={!isSubmitting} disabled={isSubmitting}>
-          {isSubmitting ? (
+          {submissionStatus === "sending" ? (
             <>
               <LoaderCircle className="h-4 w-4 animate-spin" />
               <span>Sending</span>
