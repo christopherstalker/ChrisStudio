@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import {
   Blocks,
   Bot,
@@ -10,26 +9,25 @@ import {
   Settings2,
   ShieldCheck,
   Sparkle,
-  
   Sparkles,
   Workflow,
+  type LucideIcon,
 } from "lucide-react";
 
-const iconMap = {
-  sparkles: Sparkles,
-  rocket: Rocket,
+const iconMap: Record<string, LucideIcon> = {
+  blocks: Blocks,
+  bot: Bot,
   dashboard: LayoutDashboard,
+  gauge: Gauge,
+  message: MessageSquare,
+  rocket: Rocket,
+  settings: Settings2,
+  shield: ShieldCheck,
+  spark: Sparkle,
+  sparkles: Sparkles,
   stack: Layers3,
   workflow: Workflow,
-  gauge: Gauge,
-  shield: ShieldCheck,
-  message: MessageSquare,
-  
-  spark: Sparkle,
-  settings: Settings2,
-  bot: Bot,
-  blocks: Blocks,
-} satisfies Record<string, LucideIcon>;
+};
 
 export type IconName = keyof typeof iconMap;
 
