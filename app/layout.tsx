@@ -1,27 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Instrument_Serif, Manrope } from "next/font/google";
 
 import "./globals.css";
 import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
-
-const sans = Manrope({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: "400",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -69,9 +51,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          sans.variable,
-          serif.variable,
-          mono.variable,
+          "font-sans",
           "selection:bg-accent/15 selection:text-ink",
         )}
       >
