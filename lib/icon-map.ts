@@ -10,7 +10,7 @@ import {
   Settings2,
   ShieldCheck,
   Sparkle,
-  main
+  
   Sparkles,
   Workflow,
 } from "lucide-react";
@@ -24,7 +24,7 @@ const iconMap = {
   gauge: Gauge,
   shield: ShieldCheck,
   message: MessageSquare,
-  main
+  
   spark: Sparkle,
   settings: Settings2,
   bot: Bot,
