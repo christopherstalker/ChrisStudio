@@ -9,8 +9,8 @@ import {
   Rocket,
   Settings2,
   ShieldCheck,
-  main
   Sparkle,
+  main
   Sparkles,
   Workflow,
 } from "lucide-react";
