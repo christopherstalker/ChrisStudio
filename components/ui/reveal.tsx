@@ -5,7 +5,6 @@ import type { HTMLMotionProps } from "framer-motion";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { motionTransition } from "@/lib/motion";
-import { cn } from "@/lib/utils";
 
 type RevealProps = HTMLMotionProps<"div"> & {
   delay?: number;
@@ -85,7 +84,7 @@ export function Reveal({
   return (
     <motion.div
       ref={containerRef}
-      className={cn(className)}
+      className={className}
       initial={false}
       animate={
         shouldReduceMotion || !isReady

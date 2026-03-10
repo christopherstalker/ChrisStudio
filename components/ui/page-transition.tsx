@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 import { motionTransition } from "@/lib/motion";
-import { cn } from "@/lib/utils";
 
 type PageTransitionProps = {
   children: React.ReactNode;
@@ -29,7 +28,7 @@ export function PageTransition({ children, className }: PageTransitionProps) {
   return (
     <motion.div
       key={pathname}
-      className={cn(className)}
+      className={className}
       initial={false}
       animate={
         shouldReduceMotion || !animatePageIn
