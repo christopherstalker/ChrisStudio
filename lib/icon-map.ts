@@ -15,6 +15,7 @@ import {
   Settings2,
   ShieldCheck,
  main
+  main
   Sparkles,
   Workflow,
 } from "lucide-react";
@@ -29,10 +30,10 @@ const iconMap = {
   shield: ShieldCheck,
   message: MessageSquare,
   spark: Sparkle,
-
   workflow: Workflow,
   gauge: Gauge,
   shield: ShieldCheck,
+  main
   main
   settings: Settings2,
   bot: Bot,
@@ -42,5 +43,9 @@ const iconMap = {
 export type IconName = keyof typeof iconMap;
 
 export function getIcon(iconName: IconName): LucideIcon {
+ 
+  return iconMap[iconName];
+ 
   return iconMap[iconName] ?? Sparkles;
+  main
 }
