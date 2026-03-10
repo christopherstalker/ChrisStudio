@@ -23,7 +23,6 @@ const iconMap = {
   sparkles: Sparkles,
   rocket: Rocket,
   dashboard: LayoutDashboard,
-  fix-build-errors-in-vercel-deployment
   stack: Layers3,
   workflow: Workflow,
   gauge: Gauge,
