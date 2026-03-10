@@ -9,6 +9,7 @@ import {
   Rocket,
   Settings2,
   ShieldCheck,
+  main
   Sparkle,
   Sparkles,
   Workflow,
@@ -23,6 +24,7 @@ const iconMap = {
   gauge: Gauge,
   shield: ShieldCheck,
   message: MessageSquare,
+  main
   spark: Sparkle,
   settings: Settings2,
   bot: Bot,
