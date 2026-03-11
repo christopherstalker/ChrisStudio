@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
-import { IntroOverlay } from "@/components/intro/IntroOverlay";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +55,6 @@ export default function RootLayout({
         )}
       >
         {children}
-        <IntroOverlay />
       </body>
     </html>
   );
