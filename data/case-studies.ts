@@ -1,66 +1,38 @@
 export const caseStudies = [
   {
-    slug: "atlas-reserve-analytics",
+    slug: "ops-portal-rebuild",
     featured: true,
-    industry: "Finance Platform",
-    title: "Atlas Reserve Analytics",
-    summary:
-      "A multi-role analytics workspace for an investment operations team that had outgrown spreadsheets and static reports.",
-    challenge:
-      "Analysts were building weekly reports manually and leadership had no reliable real-time view of portfolio health.",
-    solution:
-      "Designed a dashboard-driven web application with role-aware views, filtering, reporting exports, and a maintainable component system.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Recharts"],
-    metric: "68% faster weekly reporting",
-    result:
-      "Reporting time dropped dramatically and the operations team finally had one source of truth for account activity.",
-  },
-  {
-    slug: "orbitops-admin",
-    featured: false,
-    industry: "B2B SaaS",
-    title: "OrbitOps Admin",
-    summary:
-      "A premium admin panel for a SaaS platform handling onboarding, account governance, and customer support workflows.",
-    challenge:
-      "The team was juggling multiple tools and lacked a clear internal surface for account actions or escalations.",
-    solution:
-      "Built a centralized admin interface with audit logs, role-based permissions, guided workflows, and operational reporting.",
+    industry: "Logistics",
+    title: "Operations portal rebuild for a multi-region logistics team",
+    summary: "Rebuilt an internal operations portal to reduce dispatch friction and improve data confidence.",
+    challenge: "Legacy UI created frequent handoff errors and slowed dispatch decisions.",
+    solution: "Introduced role-specific workflows, reliable filters, and clearer status architecture.",
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-    metric: "41% faster support resolution",
-    result:
-      "Support workflows became faster and account operations moved from ad-hoc tooling to a consistent internal system.",
+    metric: "32% faster task resolution",
+    result: "Dispatch handoffs became measurable and significantly more reliable.",
   },
   {
-    slug: "northline-commerce-rebuild",
+    slug: "saas-onboarding-flow",
+    featured: false,
+    industry: "SaaS",
+    title: "Onboarding flow redesign for a B2B SaaS platform",
+    summary: "Redesigned key onboarding surfaces to reduce drop-off and support activation goals.",
+    challenge: "Users stalled at setup due to unclear sequencing and weak feedback loops.",
+    solution: "Mapped onboarding stages and implemented progressive guidance with clearer UI states.",
+    stack: ["Next.js", "React Hook Form", "Zod"],
+    metric: "+21% activation",
+    result: "Completion rates improved and support requests dropped in the first month.",
+  },
+  {
+    slug: "ecommerce-performance-pass",
     featured: false,
     industry: "E-commerce",
-    title: "Northline Commerce Rebuild",
-    summary:
-      "A performance-focused frontend rebuild for a growing commerce brand that needed speed without losing flexibility.",
-    challenge:
-      "The existing storefront was slow on mobile, hard to update, and underperforming during paid traffic bursts.",
-    solution:
-      "Reworked the frontend architecture, streamlined rendering paths, and introduced reusable commerce UI patterns.",
-    stack: ["Next.js", "TypeScript", "Vercel"],
-    metric: "+23% mobile conversion rate",
-    result:
-      "Mobile conversion improved while merchandising and campaign updates became faster for the internal team.",
-  },
-  {
-    slug: "flowport-automation-portal",
-    featured: false,
-    industry: "Operations",
-    title: "FlowPort Automation Portal",
-    summary:
-      "An internal workflow portal that replaced manual lead routing, approvals, and update tracking across three teams.",
-    challenge:
-      "Process ownership was unclear and dozens of repetitive tasks were being pushed through email and spreadsheets.",
-    solution:
-      "Built a workflow portal with triggers, queue views, role-aware routing, and transparent status tracking.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-    metric: "12 hours saved per week",
-    result:
-      "Cross-team handoffs became structured, measurable, and significantly less error-prone.",
+    title: "Performance modernization for a high-traffic commerce frontend",
+    summary: "Improved responsiveness and checkout continuity in a conversion-critical storefront.",
+    challenge: "Heavy client rendering caused poor mobile UX and checkout abandonment.",
+    solution: "Refined rendering strategy, reduced payloads, and standardized reusable UI patterns.",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    metric: "-38% page load time",
+    result: "Mobile conversion recovered while keeping feature delivery unblocked.",
   },
 ];
