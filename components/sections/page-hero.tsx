@@ -52,9 +52,8 @@ export function PageHero({
 
         <Reveal delay={0.1}>
           <div className="max-w-3xl">
-            <div className="surface relative overflow-hidden p-6 sm:p-8">
-              <div className="absolute inset-0 bg-hero-grid bg-grid opacity-[0.05]" />
-              <div className="relative">
+            <div className="surface p-6 sm:p-8">
+              <div>
                 <Reveal y={14}>
                   <p className="eyebrow mb-4">What to expect</p>
                 </Reveal>
