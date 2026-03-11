@@ -90,7 +90,7 @@ export function Reveal({
         shouldReduceMotion || !isReady
           ? { opacity: 1, y: 0 }
           : animateOnMount && isVisible
-            ? { opacity: [0.88, 1], y: [Math.min(y * 0.55, 12), 0] }
+            ? { opacity: 1, y: [Math.min(y * 0.55, 12), 0] }
             : isVisible
               ? { opacity: 1, y: 0 }
               : { opacity: 0, y }
