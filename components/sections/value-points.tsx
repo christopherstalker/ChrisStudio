@@ -1,33 +1,7 @@
 import { getIcon } from "@/lib/icon-map";
+import { valuePoints } from "@/data/page-content";
 import { Reveal } from "@/components/ui/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
-
-const valuePoints = [
-  {
-    icon: "stack" as const,
-    title: "Clean architecture from the start",
-    description:
-      "The foundation is set up to support future work instead of forcing a rewrite after the first successful release.",
-  },
-  {
-    icon: "shield" as const,
-    title: "Business-minded technical decisions",
-    description:
-      "Tradeoffs are explained in terms of speed, leverage, risk, and maintainability rather than vague engineering preferences.",
-  },
-  {
-    icon: "message" as const,
-    title: "Fast, direct communication",
-    description:
-      "You get clarity on progress, blockers, and next steps without unnecessary layers or overproduced status theater.",
-  },
-  {
-    icon: "spark" as const,
-    title: "Attention to UX and performance",
-    description:
-      "Interfaces are tuned for trust, responsiveness, and ease of use because those details shape how the product is perceived.",
-  },
-];
 
 export function ValuePoints() {
   return (

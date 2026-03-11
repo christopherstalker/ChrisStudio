@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { AboutStory } from "@/components/sections/about-story";
 import { FinalCta } from "@/components/sections/final-cta";
 import { PageHero } from "@/components/sections/page-hero";
+import { aboutPanelItems } from "@/data/page-content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -11,12 +12,6 @@ export const metadata: Metadata = createMetadata({
     "About ChrisStudio: product-oriented software engineering, thoughtful frontend architecture, and a calm delivery style built for serious client work.",
   path: "/about",
 });
-
-const aboutPanelItems = [
-  { label: "Positioning", value: "Freelance flexibility with product-team standards" },
-  { label: "Focus", value: "Performance, UX clarity, maintainable systems, direct collaboration" },
-  { label: "Best clients", value: "Founders and teams who care how the work is built" },
-];
 
 export default function AboutPage() {
   return (
