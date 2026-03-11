@@ -1,4 +1,5 @@
 import { siteConfig } from "@/data/site";
+import { homeHeroContent } from "@/data/page-content";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
@@ -14,15 +15,13 @@ export function HomeHero() {
           </Reveal>
           <Reveal delay={0.05} className="mt-6">
             <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-[5.5rem] lg:leading-[0.94]">
-              Software that looks refined, feels fast, and is built to{" "}
-              <span className="font-serif text-warm">scale cleanly</span>.
+              {homeHeroContent.title}{" "}
+              <span className="font-serif text-warm">{homeHeroContent.titleEmphasis}</span>.
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-base leading-7 sm:text-lg">
-              ChrisStudio helps founders and ambitious teams ship premium web
-              applications, SaaS platforms, dashboards, automation systems, and
-              conversion-focused product sites with product-grade execution.
+              {homeHeroContent.description}
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -51,56 +50,41 @@ export function HomeHero() {
 
         <Reveal delay={0.12}>
           <div className="relative">
-            <div className="absolute -left-6 top-8 hidden h-32 w-32 rounded-full bg-accent/10 blur-3xl sm:block" />
-            <div className="absolute -bottom-8 right-8 hidden h-40 w-40 rounded-full bg-warm/10 blur-3xl sm:block" />
-            <div className="surface relative overflow-hidden p-6 sm:p-8">
-              <div className="absolute inset-0 bg-hero-grid bg-grid opacity-[0.05]" />
-              <div className="relative">
+            <div className="surface p-6 sm:p-8">
+              <div>
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="eyebrow mb-3">Engagement snapshot</p>
+                    <p className="eyebrow mb-3">{homeHeroContent.engagementCard.eyebrow}</p>
                     <h2 className="text-2xl font-semibold tracking-[-0.04em] text-ink">
-                      Senior execution without agency drag
+                      {homeHeroContent.engagementCard.title}
                     </h2>
                   </div>
                   <div className="rounded-full border border-line/80 bg-white/90 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                    Build mode
+                    {homeHeroContent.engagementCard.badge}
                   </div>
                 </div>
 
                 <div className="mt-8 space-y-4">
                   <div className="surface-muted rounded-[24px] p-5">
                     <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-                      What gets handled
+                      {homeHeroContent.engagementCard.handledLabel}
                     </p>
                     <p className="mt-3 text-base font-medium leading-7 text-ink">
-                      Product direction, interface systems, frontend engineering,
-                      delivery structure, launch readiness.
+                      {homeHeroContent.engagementCard.handledValue}
                     </p>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="surface-muted rounded-[24px] p-5">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-                        Release rhythm
-                      </p>
-                      <p className="mt-3 text-lg font-semibold tracking-[-0.03em] text-ink">
-                        Weekly checkpoints
-                      </p>
-                      <p className="mt-2 text-sm leading-6">
-                        Visible progress, scoped decisions, no dead air.
-                      </p>
-                    </div>
-                    <div className="surface-muted rounded-[24px] p-5">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-                        Strong fit
-                      </p>
-                      <p className="mt-3 text-lg font-semibold tracking-[-0.03em] text-ink">
-                        SaaS, ops, revenue surfaces
-                      </p>
-                      <p className="mt-2 text-sm leading-6">
-                        Best for products that need both polish and structure.
-                      </p>
-                    </div>
+                    {homeHeroContent.engagementCard.detailCards.map((card) => (
+                      <div key={card.label} className="surface-muted rounded-[24px] p-5">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+                          {card.label}
+                        </p>
+                        <p className="mt-3 text-lg font-semibold tracking-[-0.03em] text-ink">
+                          {card.title}
+                        </p>
+                        <p className="mt-2 text-sm leading-6">{card.description}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -108,14 +92,14 @@ export function HomeHero() {
                   <div className="flex items-start justify-between gap-5">
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-panel/60">
-                        Recent outcomes
+                        {homeHeroContent.engagementCard.outcomesLabel}
                       </p>
                       <p className="mt-3 text-xl font-semibold tracking-[-0.04em]">
-                        Faster reporting, cleaner internal tooling, better-performing product sites.
+                        {homeHeroContent.engagementCard.outcomesValue}
                       </p>
                     </div>
                     <div className="rounded-full bg-white/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.22em] text-panel/70">
-                      Results
+                      {homeHeroContent.engagementCard.outcomesBadge}
                     </div>
                   </div>
                 </div>
