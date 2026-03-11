@@ -5,6 +5,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { ContactForm } from "@/components/ui/contact-form";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
+import { contactPanelItems } from "@/data/page-content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -13,12 +14,6 @@ export const metadata: Metadata = createMetadata({
     "Get in touch with ChrisStudio for serious inquiries about web development, SaaS products, dashboards, automation systems, or frontend modernization.",
   path: "/contact",
 });
-
-const contactPanelItems = [
-  { label: "Response window", value: "Usually within one business day" },
-  { label: "Best inquiries", value: "Clear scope, meaningful business problem, real urgency" },
-  { label: "Conversation style", value: "Direct, practical, and focused on fit" },
-];
 
 export default function ContactPage() {
   return (

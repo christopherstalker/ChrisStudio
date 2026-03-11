@@ -14,7 +14,7 @@ export const contactSchema = z.object({
     .trim()
     .min(1, "Please enter your email address.")
     .email("Please enter a valid email address."),
-  company: z.string().trim().min(1, "Please enter your company name."),
+  company: z.string().trim().optional().default(""),
   budget: z.enum(budgetOptions, {
     required_error: "Please select a project budget.",
   }),

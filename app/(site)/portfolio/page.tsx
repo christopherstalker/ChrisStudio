@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CaseStudiesGrid } from "@/components/sections/case-studies-grid";
 import { FinalCta } from "@/components/sections/final-cta";
 import { PageHero } from "@/components/sections/page-hero";
+import { portfolioPanelItems } from "@/data/page-content";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -11,12 +12,6 @@ export const metadata: Metadata = createMetadata({
     "Selected case studies across SaaS, dashboards, e-commerce rebuilds, automation portals, internal CRM tools, and startup product sites.",
   path: "/portfolio",
 });
-
-const portfolioPanelItems = [
-  { label: "Project types", value: "SaaS, dashboards, internal tools, product sites, automation" },
-  { label: "What is shown", value: "Challenge, solution, stack, and measurable result" },
-  { label: "Delivery standard", value: "Premium UI, clean architecture, practical business focus" },
-];
 
 export default function PortfolioPage() {
   return (
