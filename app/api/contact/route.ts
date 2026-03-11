@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
-import { sendContactEmail } from "@/lib/contact-email";
+import {
+  isContactConfigError,
+  sendContactEmail,
+} from "@/lib/contact-email";
 import { contactSchema } from "@/lib/contact-schema";
 
 export const runtime = "nodejs";
@@ -40,6 +43,19 @@ export async function POST(request: Request) {
         "Thanks for the brief. I will review it and reply with next steps within one business day.",
     });
   } catch (error) {
+    if (isContactConfigError(error)) {
+      console.error("Contact form email configuration is missing.", error);
+
+      return NextResponse.json(
+        {
+          ok: false,
+          message:
+            "Contact form email delivery is not configured yet. Please set RESEND_API_KEY and CONTACT_FROM_EMAIL.",
+        },
+        { status: 503 },
+      );
+    }
+
     console.error("Contact form submission failed.", error);
 
     return NextResponse.json(

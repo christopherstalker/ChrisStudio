@@ -20,6 +20,13 @@ type SuccessState = {
 
 type SubmissionStatus = "idle" | "sending" | "success" | "error";
 
+type ContactApiResponse = {
+  ok?: boolean;
+  message?: string;
+  inquiryId?: string;
+  errors?: Record<string, string[] | undefined>;
+};
+
 export function ContactForm() {
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>("idle");
   const [serverError, setServerError] = useState<string | null>(null);
@@ -57,11 +64,12 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
 
-      const data = (await response.json()) as {
-        message?: string;
-        inquiryId?: string;
-        errors?: Record<string, string[] | undefined>;
-      };
+      let data: ContactApiResponse = {};
+      try {
+        data = (await response.json()) as ContactApiResponse;
+      } catch {
+        data = {};
+      }
 
       if (!response.ok) {
         if (data.errors) {
