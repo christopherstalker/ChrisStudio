@@ -4,8 +4,6 @@ import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 
-const freelancerHuntUrl = "https://freelancehunt.com/freelancer/ChrisStallker.html";
-
 export function ContactPanel() {
   return (
     <div className="space-y-5">
@@ -29,24 +27,6 @@ export function ContactPanel() {
               ))}
             </ul>
           </Reveal>
-        </Card>
-      </Reveal>
-
-      <Reveal delay={0.12}>
-        <Card className="p-6 sm:p-8">
-          <p className="eyebrow mb-4">FreelancerHunt</p>
-          <h3 className="text-xl font-semibold tracking-[-0.03em] text-ink">
-            Hire through my FreelancerHunt profile
-          </h3>
-          <p className="mt-3 text-sm leading-6 text-muted">
-            If you prefer platform-based contracts, milestones, and payments, use the
-            FreelancerHunt profile below.
-          </p>
-          <div className="mt-5">
-            <Button href={freelancerHuntUrl} target="_blank" rel="noreferrer" variant="secondary" trailingIcon>
-              Open FreelancerHunt Widget
-            </Button>
-          </div>
         </Card>
       </Reveal>
 
