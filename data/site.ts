@@ -18,6 +18,7 @@ export const siteConfig = {
   socialLinks: [
     { label: "GitHub", href: "https://github.com/christopherstalker" },
     { label: "GitLab", href: "https://gitlab.com/christopherstalker" },
+    { label: "FreelancerHunt", href: "https://freelancehunt.com/freelancer/ChrisStallker.html" },
   ],
   trustSignals: [
     "Fast delivery with clear weekly checkpoints",

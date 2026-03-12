@@ -2,6 +2,7 @@ import { siteConfig } from "@/data/site";
 import { contactPanelContent } from "@/data/page-content";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/ui/reveal";
+import { Button } from "@/components/ui/button";
 
 export function ContactPanel() {
   return (
